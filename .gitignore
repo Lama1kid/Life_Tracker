@@ -2,6 +2,7 @@
 __pycache__/
 poke.py
 poke.sql
+journal.db
 *.py[cod]
 *$py.class
 
