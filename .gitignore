@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+poke.py
+poke.sql
 *.py[cod]
 *$py.class
 
