@@ -95,8 +95,24 @@ def journal():
     cur.execute(
         f"""
     UPDATE {month_name}
-    SET (get_up_early, immerse, learn_sth_new, "info_overloaded(N)", "overthink(N)", "obsessed(N)", "improper_stimulus(N)", "condition(%)") =
-        (:get_up_early, :immerse, :learn_sth_new, :info_overloaded(N), :overthink(N), :obsessed(N), :improper_stimulus(N), :condition(%))
+    SET (get_up_early,
+        immerse,
+        learn_sth_new,
+        "info_overloaded(N)",
+        "overthink(N)",
+        "obsessed(N)",
+        "improper_stimulus(N)",
+        read_bef_bed,
+        "condition(%)") =
+        (:get_up_early,
+        :immerse,
+        :learn_sth_new,
+        :info_overloaded(N),
+        :overthink(N),
+        :obsessed(N),
+        :improper_stimulus(N),
+        :read_bef_bed,
+        :condition(%))
     WHERE date = strftime('%m-%d', :date);""", metrics_value)
     db.commit()
     print("------------------------------------------")
@@ -131,8 +147,8 @@ def start_a_new_month():
                 select date(date, '+1 day') from DataGenerated where date < date('now', 'start of month', '+1 month', '-1 days')
             )
 
-            insert into {month_name} (date, study_duration)
-                select strftime('%m-%d', date), 0 from DataGenerated;
+            insert into {month_name} (date)
+                select strftime('%m-%d', date) from DataGenerated;
             """)
     db.commit()
     print("start to journal in a new month!")
