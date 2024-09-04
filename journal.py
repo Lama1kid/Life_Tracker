@@ -182,6 +182,9 @@ def record_study_duration():
                         SELECT study_duration FROM {month_name}
                         WHERE date = strftime('%m-%d', 'now');""").fetchall(
         )[0][0]
+        # convert duration's data type
+        if isinstance(duration, type(None)):
+            duration = 0.0
         # compute duration and store it
         time_delta = float(f"{(end_time - start_time).seconds / 60:.2f}")
         duration += time_delta
