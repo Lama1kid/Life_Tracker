@@ -2,6 +2,7 @@ import calendar
 import datetime
 import sqlite3
 from re import match
+from random import randrange
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
         "journal": journal,
         "start a new month": start_a_new_month,
         "record study duration": record_study_duration,
+        "daily prompt": daily_prompt,
     }  # map to functions
 
     # query loop
@@ -199,5 +201,34 @@ def record_study_duration():
     else:
         print("you didn't start to record or end the recording.")
 
+def daily_prompt():
+    # initalize prompts
+    # prompt0, 1, 5 have subprompts
+    prompts = [
+        ["What would you do if money were no object?", 
+         "Imagine a world where you have all the time and money, what would you use your talent and skills to server other people?"
+         ],
+        ["What you would like people to say in your funeral?"
+         "What sort of spouse/parent/child you want to be?"
+         "to what extent I am actually living in alignment with that?"
+         ],
+        "If I repeat this week's action for next 10 years, where I would end up? and is that where I want to be?",
+        "What activities I have done in last 2 weeks has energised me and drain me?",
+        "How is your wheel of life?",
+        ["What is your odyssey plan?",
+         "What you life would look life 5 years from now if you continued down current path?",
+         "What you life would look life 5 years from now if you took a completely different path?",
+         "What your life would look life if money and social obligation and what people would think were completely irrelevent?",
+         ],
+        "Which goal will have the greatest positive impact on your life?",
+        "Do you work for your business or does business work for you?",
+        "If you knew you'd die in two years, how would you spend your time?"
+    ]
+    prompts_serial_num = randrange(len(prompts))
+    if isinstance(prompts[prompts_serial_num], list):
+        print(prompts[prompts_serial_num][0])
+        for i in range(len(prompts[prompts_serial_num])):
+            print(f"    ({i}) {prompts[prompts_serial_num][i]}")
+    print("------------------------------------------")
 
 main()
