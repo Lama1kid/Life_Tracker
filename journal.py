@@ -32,6 +32,7 @@ def main():
         # request input
         operation_num = input(
             "What you want to do?(select a nubmer; press q to exit) ")
+        print()
         if operation_num == "q":
             break
         operation = options_by_order[int(operation_num)]
@@ -39,6 +40,8 @@ def main():
             print("not a option")
             continue
         options_dict[operation]()
+        print("-------------------------------------------------------------")
+
 
 
 def journal():
@@ -117,7 +120,7 @@ def journal():
         :condition(%))
     WHERE date = strftime('%m-%d', :date);""", metrics_value)
     db.commit()
-    print("------------------------------------------")
+    print("-------------------------------------------------------------")
 
 
 def start_a_new_month():
@@ -154,7 +157,7 @@ def start_a_new_month():
             """)
     db.commit()
     print("start to journal in a new month!")
-    print("------------------------------------------")
+    print("-------------------------------------------------------------")
 
 
 def record_study_duration():
@@ -197,7 +200,7 @@ def record_study_duration():
                     SET study_duration = ?
                     WHERE date = strftime('%m-%d', 'now');""", (duration, ))
         db.commit()
-        print("------------------------------------------")
+
     else:
         print("you didn't start to record or end the recording.")
 
@@ -224,11 +227,13 @@ def daily_prompt():
         "Do you work for your business or does business work for you?",
         "If you knew you'd die in two years, how would you spend your time?"
     ]
+    # randomly choose one and print
     prompts_serial_num = randrange(len(prompts))
     if isinstance(prompts[prompts_serial_num], list):
         print(prompts[prompts_serial_num][0])
         for i in range(len(prompts[prompts_serial_num])):
             print(f"    ({i}) {prompts[prompts_serial_num][i]}")
-    print("------------------------------------------")
+    else:
+        print(prompts[prompts_serial_num])
 
 main()
