@@ -120,7 +120,6 @@ def journal():
         :condition(%))
     WHERE date = strftime('%m-%d', :date);""", metrics_value)
     db.commit()
-    print("-------------------------------------------------------------")
 
 
 def start_a_new_month():
@@ -157,7 +156,6 @@ def start_a_new_month():
             """)
     db.commit()
     print("start to journal in a new month!")
-    print("-------------------------------------------------------------")
 
 
 def record_study_duration():
@@ -211,9 +209,9 @@ def daily_prompt():
         ["What would you do if money were no object?", 
          "Imagine a world where you have all the time and money, what would you use your talent and skills to server other people?"
          ],
-        ["What you would like people to say in your funeral?"
-         "What sort of spouse/parent/child you want to be?"
-         "to what extent I am actually living in alignment with that?"
+        ["What you would like people to say in your funeral?",
+         "What sort of spouse/parent/child you want to be?",
+         "to what extent I am actually living in alignment with that?",
          ],
         "If I repeat this week's action for next 10 years, where I would end up? and is that where I want to be?",
         "What activities I have done in last 2 weeks has energised me and drain me?",
